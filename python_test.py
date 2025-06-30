@@ -14,3 +14,8 @@ print(arr)
 print('shape of array :', arr.shape)
 
 print(np.eye(3))
+
+x, y = 5
+
+print(x)
+print(y)

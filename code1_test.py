@@ -50,6 +50,7 @@ def run_gp_ucb(
     
     # Initial data (can start empty or with a single random sample)
     X = np.array([[0.0]])
+    print(X)
     y = f(X).ravel() + np.random.normal(0, noise, size=X.shape[0])
     
     for step in range(1, n_iter + 1):
@@ -63,6 +64,7 @@ def run_gp_ucb(
         
         # Update dataset
         X = np.vstack((X, [x_next]))
+        print(X)
         y = np.append(y, y_next)
         
         # Plot step
@@ -72,4 +74,4 @@ def run_gp_ucb(
 
 #4rth code block Visualizations
 	# Example: Run with RBF kernel, beta=2, 10 iterations, noise=0.1
-X_samples, y_samples = run_gp_ucb(n_iter=50, beta=2.0, noise=0.1, kernel='RBF')
+X_samples, y_samples = run_gp_ucb(n_iter=10, beta=2.0, noise=0.1, kernel='RBF')
