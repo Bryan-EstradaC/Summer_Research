@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF
-import math
 
 # True function, We don't know it
 def f(x):
@@ -68,4 +67,3 @@ for x in range(0, 5):
     plt.legend()
     plt.grid(True)
     plt.show()
-
