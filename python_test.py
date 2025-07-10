@@ -1,21 +1,34 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
-a = np.array([[1,2,3], [4,5,6]])
-print("array a: ", a)
-print("shape of a:", a.shape)
+# Fast-decaying eigenvalues kernel matrix (nearly rank 1)
+K_fast = np.array([
+    [1.00, 0.95, 0.90],
+    [0.95, 1.00, 0.95],
+    [0.90, 0.95, 1.00]
+])
 
-x = np.atleast_2d(a)
-print("array x:", x)
-print("shape of x: ", x.shape)
+# Slow-decaying eigenvalues kernel matrix (more variation)
+K_slow = np.array([
+    [1.00, 0.50, 0.30],
+    [0.50, 1.00, 0.60],
+    [0.30, 0.60, 1.00]
+])
 
-arr = np.array([1, 2, 3, 4], ndmin=5)
+# Compute eigenvalues
+eigvals_fast = np.linalg.eigvalsh(K_fast)[::-1]  # descending order
+eigvals_slow = np.linalg.eigvalsh(K_slow)[::-1]
 
-print(arr)
-print('shape of array :', arr.shape)
+# Plot eigenvalue decay
+plt.figure(figsize=(10, 5))
+plt.plot(eigvals_fast, 'o-', label='Fast Decay (Smooth Kernel)', linewidth=2)
+plt.plot(eigvals_slow, 's--', label='Slow Decay (Wiggly Kernel)', linewidth=2)
+plt.title('Eigenvalue Decay of Kernel Matrices')
+plt.xlabel('Eigenvalue Index')
+plt.ylabel('Eigenvalue Magnitude')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
 
-print(np.eye(3))
-
-x, y = 5
-
-print(x)
-print(y)
+eigvals_fast, eigvals_slow
